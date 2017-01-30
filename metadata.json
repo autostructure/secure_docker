@@ -1,6 +1,6 @@
 {
   "name": "autostructure-secure_docker",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Bryan Belanger",
   "summary": "Applies hardening rules to Docker.",
   "license": "Apache-2.0",
@@ -8,7 +8,10 @@
   "project_page": "https://github.com/autostructure/secure_docker",
   "issues_url": "https://github.com/autostructure/secure_docker/issues",
   "dependencies": [
-    {"name":"puppetlabs/docker_platform","version_requirement":">= 2.1.0 <= 3.0.0"}
+    {
+      "name": "puppetlabs/docker_platform",
+      "version_requirement": ">= 2.1.0 <= 3.0.0"
+    }
   ],
   "operatingsystem_support": [
     {
