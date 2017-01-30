@@ -1,0 +1,9 @@
+fixtures:
+  repositories:
+    stdlib:          "https://github.com/puppetlabs/puppetlabs-stdlib.git"
+    apt:             "https://github.com/puppetlabs/puppetlabs-apt.git"
+    epel:            "https://github.com/stahnma/puppet-module-epel.git"
+    docker_platform: "https://github.com/puppetlabs/puppetlabs-docker_platform.git"
+    docker:          "https://github.com/garethr/garethr-docker.git"
+  symlinks:
+    secure_docker: "#{source_dir}"
