@@ -55,7 +55,7 @@ class secure_docker::config {
     ensure => directory,
     owner  => 'root',
     group  => 'root',
-    mode   => '0755',
+    mode   => 'u=rwx,g-w,o-w',
   }
 
   # 3.7 Verify that registry certificate file ownership is set to root:root
@@ -65,7 +65,7 @@ class secure_docker::config {
     owner   => 'root',
     group   => 'root',
     recurse => true,
-    mode    => '0444',
+    mode    => 'a-wx',
   }
 
   # # 3.9 Verify that TLS CA certificate file ownership is set to root:root
@@ -100,7 +100,7 @@ class secure_docker::config {
   file { '/var/run/docker.sock':
     owner => 'root',
     group => 'docker',
-    mode  => '0660',
+    mode  => 'u-x,g-x,o-rwx',
   }
 
   # 3.17 Verify that daemon.json file ownership is set to root:root
@@ -109,7 +109,7 @@ class secure_docker::config {
     ensure => file,
     owner  => 'root',
     group  => 'root',
-    mode   => '0644',
+    mode   => 'u-x,g-wx,o-wx',
   }
 
   # 3.19 Verify that /etc/default/docker file ownership is set to root:root
@@ -118,6 +118,6 @@ class secure_docker::config {
     ensure => file,
     owner  => 'root',
     group  => 'root',
-    mode   => '0644',
+    mode   => 'u-x,g-wx,o-wx',
   }
 }
