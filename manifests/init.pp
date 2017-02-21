@@ -109,4 +109,8 @@ class secure_docker (
   class { '::secure_docker::config': } ~>
   class { '::secure_docker::service_auditd': } ->
   Class['::secure_docker']
+
+
+  Class['::secure_docker::config'] ~>
+  Class['::docker::service']
 }
