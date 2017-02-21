@@ -103,10 +103,11 @@ class secure_docker::config {
     mode  => '0660',
   }
 
+  # daemon.json is incompatiable with the current Puppet module
   # 3.17 Verify that daemon.json file ownership is set to root:root
   # 3.18 Verify that daemon.json file permissions are set to 644 or more restrictive
   file { '/etc/docker/daemon.json':
-    ensure => file,
+    ensure => absent,
     owner  => 'root',
     group  => 'root',
     mode   => '0644',
