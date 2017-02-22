@@ -6,7 +6,7 @@ group :test do
   gem "puppetlabs_spec_helper"
   gem "rake"
   gem "rspec"
-  gem "rspec-puppet", git: 'https://github.com/rodjek/rspec-puppet.git'
+  gem "rspec-puppet" # , git: 'https://github.com/rodjek/rspec-puppet.git'
   gem "rspec-puppet-facts"
   gem 'rubocop'
   gem 'simplecov'

@@ -55,7 +55,7 @@ class secure_docker::config {
     ensure => directory,
     owner  => 'root',
     group  => 'root',
-    mode   => '0755',
+    mode   => 'go-w',
   }
 
   # 3.7 Verify that registry certificate file ownership is set to root:root
@@ -65,7 +65,7 @@ class secure_docker::config {
     owner   => 'root',
     group   => 'root',
     recurse => true,
-    mode    => '0444',
+    mode    => 'a-rx',
   }
 
   # # 3.9 Verify that TLS CA certificate file ownership is set to root:root
@@ -98,9 +98,10 @@ class secure_docker::config {
   # 3.15 Verify that Docker socket file ownership is set to root:docker
   # 3.16 Verify that Docker socket file permissions are set to 660 or more restrictive
   file { '/var/run/docker.sock':
-    owner => 'root',
-    group => 'docker',
-    mode  => '0660',
+    ensure => file,
+    owner  => 'root',
+    group  => 'docker',
+    mode   => 'a-x,o-rwx',
   }
 
   # daemon.json is incompatiable with the current Puppet module
@@ -110,7 +111,7 @@ class secure_docker::config {
     ensure => absent,
     owner  => 'root',
     group  => 'root',
-    mode   => '0644',
+    mode   => 'a-x,go-w',
   }
 
   # 3.19 Verify that /etc/default/docker file ownership is set to root:root
@@ -119,6 +120,6 @@ class secure_docker::config {
     ensure => file,
     owner  => 'root',
     group  => 'root',
-    mode   => '0644',
+    mode   => 'a-x,go-w',
   }
 }

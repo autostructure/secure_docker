@@ -28,7 +28,6 @@ class secure_docker (
   $ip_masq                           = undef,
   $bip                               = undef,
   $mtu                               = undef,
-  $iptables                          = undef,
   $socket_bind                       = undef,
   $fixed_cidr                        = undef,
   $bridge                            = undef,

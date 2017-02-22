@@ -14,7 +14,6 @@ class secure_docker::install {
   # TODO: 2.4 Do not use insecure registries
   $dockerd_params = [
     '--icc=false',
-    '--iptables=true',
     '--disable-legacy-registry',
     '--live-restore',
     '--userland-proxy=false',
@@ -41,7 +40,7 @@ class secure_docker::install {
     ip_masq                           => $::secure_docker::ip_masq,
     bip                               => $::secure_docker::bip,
     mtu                               => $::secure_docker::mtu,
-    iptables                          => $::secure_docker::iptables,
+    iptables                          => true,
     socket_bind                       => $::secure_docker::socket_bind,
     fixed_cidr                        => $::secure_docker::fixed_cidr,
     bridge                            => $::secure_docker::bridge,
