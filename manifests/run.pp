@@ -108,7 +108,7 @@ define secure_docker::run (
   }
 
   # 5.4 Do not use privileged containers
-  # 5.14 Set the 'on-failure' container restart policy to 5
+  # TODO: 5.14 Set the 'on-failure' container restart policy to 5
   ::docker::run { $name:
     ensure                            => $ensure,
     image                             => $image,
@@ -149,7 +149,7 @@ define secure_docker::run (
     tty                               => $tty,
     socket_connect                    => $socket_connect,
     hostentries                       => $hostentries,
-    restart                           => 'on-failure:5',
+    restart                           => undef,
     before_start                      => $before_start,
     before_stop                       => $before_stop,
     remove_container_on_start         => $remove_container_on_start,
