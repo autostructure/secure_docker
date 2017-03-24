@@ -1,3 +1,6 @@
+2017-03-24 Release 1.0.5
+- Ensure docker group available for config
+
 2017-02-22 Release 1.0.4
 - Use puppet's restart policy... negates 5.14
 

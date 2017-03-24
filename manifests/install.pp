@@ -14,6 +14,7 @@ class secure_docker::install {
   # TODO: 2.4 Do not use insecure registries
   $dockerd_params = [
     '--icc=false',
+    '--iptables=true',
     '--disable-legacy-registry',
     '--live-restore',
     '--userland-proxy=false',
@@ -21,8 +22,8 @@ class secure_docker::install {
 
   $extra_parameters = concat($::secure_docker::extra_parameters, $dockerd_params)
 
-  # TODO: 2.5 Do not use the aufs storage driver
-  # Remove '--storage-driver aufs'
+  # 2.5 Do not use the aufs storage driver
+  # $extra_parameters = delete($extra_parameters_dirty, '--storage-driver aufs')
 
   # 2.2 Set the logging level
   class { '::docker':
@@ -118,4 +119,7 @@ class secure_docker::install {
   file { $::secure_docker::docker_auditd_path:
     ensure => file,
   }
+
+  # Make sure group docker exists
+  group { 'docker': }
 }

@@ -101,6 +101,11 @@ class secure_docker (
   $service_hasrestart                = undef,
   ) {
 
+  # 1.2 Use the updated Linux Kernel (Scored)
+  if versioncmp($::facts['kernelversion'], '3.10') < 0 {
+    fail('The Linux kernelversion must be at least version 3.10')
+  }
+
   # Docker audit roles path
   $docker_auditd_path = '/etc/audit/rules.d/docker.rules'
 
