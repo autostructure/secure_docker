@@ -113,6 +113,24 @@ describe 'secure_docker::run' do
           it { is_expected.not_to compile.with_all_deps }
         end
 
+        context "secure_docker_run defines allow additional privileges" do
+          let(:params) {
+            {
+              image: 'some_image',
+              memory_limit: '5m',
+              allow_additional_privileges: true,
+            }
+          }
+
+          it { is_expected.not_to compile.with_all_deps }
+
+          it {
+            is_expected.to contain_docker__run('some_container').with(
+              'extra_parameters' => ['--read-only', '--cap-drop=all']
+            )
+          }
+        end
+
         context "secure_docker_run defines with valid ip" do
           let(:params) {
             {

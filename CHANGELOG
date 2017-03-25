@@ -1,3 +1,7 @@
+2017-03-25 Release 1.1.0
+- Allow privileges to be added on run
+- More error checking
+
 2017-03-24 Release 1.0.5
 - Ensure docker group available for config
 
