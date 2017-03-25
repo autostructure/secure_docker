@@ -20,10 +20,10 @@ class secure_docker::install {
     '--userland-proxy=false',
   ]
 
-  $extra_parameters = concat($::secure_docker::extra_parameters, $dockerd_params)
+  $extra_parameters_dirty = concat($::secure_docker::extra_parameters, $dockerd_params)
 
   # 2.5 Do not use the aufs storage driver
-  # $extra_parameters = delete($extra_parameters_dirty, '--storage-driver aufs')
+  $extra_parameters_clean = delete_regex($extra_parameters_dirty, '--storage-driver\s+aufs')
 
   # 2.2 Set the logging level
   class { '::docker':
@@ -66,7 +66,7 @@ class secure_docker::install {
     dns_search                        => $::secure_docker::dns_search,
     socket_group                      => $::secure_docker::socket_group,
     labels                            => $::secure_docker::labels,
-    extra_parameters                  => $extra_parameters,
+    extra_parameters                  => $extra_parameters_clean,
     shell_values                      => $::secure_docker::shell_values,
     proxy                             => $::secure_docker::proxy,
     no_proxy                          => $::secure_docker::no_proxy,

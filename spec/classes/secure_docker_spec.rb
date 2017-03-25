@@ -89,7 +89,6 @@ describe 'secure_docker' do
 
           it {
             is_expected.to contain_file('/var/run/docker.sock').with(
-              'ensure' => 'present',
               'owner'  => 'root',
               'group'  => 'docker',
               'mode'   => 'a-x,o-rwx'
