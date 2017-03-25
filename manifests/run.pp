@@ -65,7 +65,7 @@ define secure_docker::run (
 
   # 5.7 Do not map privileged ports within containers
   # 5.13 Bind incoming container traffic to a specific host interface
-  $_check_port_mappings = grep($ports, "^${ip_regex}${port_regex}:\\d+(\\/udp)?$")
+  $_check_port_mappings = grep($ports, "^${ip_regex}?${port_regex}:${port_regex}(\\/udp)?$")
 
   if size($_check_port_mappings) != size($ports) {
     $port_differences = difference($ports, $_check_port_mappings)
