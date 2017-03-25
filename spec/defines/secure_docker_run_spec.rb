@@ -71,6 +71,48 @@ describe 'secure_docker::run' do
           it { is_expected.to compile.with_all_deps }
         end
 
+        context "secure_docker_run defines with just ports" do
+          let(:params) {
+            {
+              image: 'some_image',
+              memory_limit: '5m',
+              ports: [
+                '8081:8081',
+              ]
+            }
+          }
+
+          it { is_expected.to compile.with_all_deps }
+        end
+
+        context "secure_docker_run defines with just ports and udp" do
+          let(:params) {
+            {
+              image: 'some_image',
+              memory_limit: '5m',
+              ports: [
+                '8081:8081/udp',
+              ]
+            }
+          }
+
+          it { is_expected.to compile.with_all_deps }
+        end
+
+        context "secure_docker_run defines with crazy ports" do
+          let(:params) {
+            {
+              image: 'some_image',
+              memory_limit: '5m',
+              ports: [
+                '8081:99999999',
+              ]
+            }
+          }
+
+          it { is_expected.not_to compile.with_all_deps }
+        end
+
         context "secure_docker_run defines with valid ip" do
           let(:params) {
             {
