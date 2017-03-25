@@ -1,6 +1,6 @@
 {
   "name": "autostructure-secure_docker",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "author": "Bryan Belanger",
   "summary": "Applies hardening rules to Docker.",
   "license": "Apache-2.0",
