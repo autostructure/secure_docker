@@ -47,6 +47,7 @@ define secure_docker::run (
   Optional[Boolean] $remove_container_on_stop = undef,
   Optional[Boolean] $remove_volume_on_start = undef,
   Optional[Boolean] $remove_volume_on_stop = undef,
+  Optional[Boolean] $allow_additional_capabilities = false,
   Optional[Boolean] $allow_additional_privileges = false,
 ) {
   # 5.5 Do not mount sensitive host system directories on containers
@@ -54,6 +55,11 @@ define secure_docker::run (
 
   if /^\s*(\/|\/boot|\/dev|\/etc|\/lib|\/proc|\/sys|\/usr):/ in $volumes {
     fail('Security concern -- /, /boot, /dev, /etc, /lib, /proc, /sys, and /usr host directories cannot be mounted.')
+  }
+
+  $cap_opt = $allow_additional_capabilities ? {
+    true    => undef,
+    default => '--cap-drop=all',
   }
 
   $security_opt = $allow_additional_privileges ? {
@@ -64,7 +70,7 @@ define secure_docker::run (
   # 5.3 Restrict Linux Kernel Capabilities within containers
   # 5.12 Mount container's root filesystem as read only
   # 5.25 Restrict container from acquiring additional privileges
-  $_extra_parameters = union($extra_parameters, delete_undef_values(['--read-only', $security_opt, '--cap-drop=all']))
+  $_extra_parameters = union($extra_parameters, delete_undef_values(['--read-only', $security_opt, $cap_opt]))
 
   $ip_regex = '((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]):)'
   $port_regex = '(102[4-9]|10[3-9]\d|1[1-9]\d{2}|[2-9]\d{3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])'
