@@ -122,7 +122,7 @@ describe 'secure_docker::run' do
             }
           }
 
-          it { is_expected.not_to compile.with_all_deps }
+          it { is_expected.to compile.with_all_deps }
 
           it {
             is_expected.to contain_docker__run('some_container').with(

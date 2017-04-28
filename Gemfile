@@ -9,6 +9,7 @@ group :test do
   gem 'rspec-puppet' # , git: 'https://github.com/rodjek/rspec-puppet.git'
   gem 'rspec-puppet-facts'
   gem 'rubocop'
+  gem 'rubocop-rspec'
   gem 'simplecov'
   gem 'simplecov-console'
 

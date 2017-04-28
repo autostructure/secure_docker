@@ -10,11 +10,11 @@ describe 'secure_docker' do
 
         # 2.4 Do not use insecure registries (Scored)
         # 2.5 Do not use the aufs storage driver (Scored)
-        let(:params) {
-          {
-            extra_parameters: ['--storage-driver aufs', '--insecure-registry some_registry']
-          }
-        }
+        # let(:params) {
+        #   {
+        #     extra_parameters: ['--storage-driver aufs', '--insecure-registry some_registry']
+        #   }
+        # }
 
         context "secure_docker class without any parameters" do
           it { is_expected.to compile.with_all_deps }
