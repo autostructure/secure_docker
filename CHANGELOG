@@ -1,3 +1,6 @@
+2017-04-28 Release 1.1.5
+- Remove docker.sock from management.
+
 2017-03-25 Release 1.1.0
 - Allow privileges to be added on run
 - More error checking

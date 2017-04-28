@@ -97,12 +97,13 @@ class secure_docker::config {
 
   # 3.15 Verify that Docker socket file ownership is set to root:docker
   # 3.16 Verify that Docker socket file permissions are set to 660 or more restrictive
-  file { '/var/run/docker.sock':
-    owner   => 'root',
-    group   => 'docker',
-    mode    => 'a-x,o-rwx',
-    seltype => 'var_run_t',
-  }
+  # TODO: Can this be addressed. Document or fix.
+  # file { '/var/run/docker.sock':
+  #   owner   => 'root',
+  #   group   => 'docker',
+  #   mode    => 'a-x,o-rwx',
+  #   seltype => 'var_run_t',
+  # }
 
   # daemon.json is incompatiable with the current Puppet module
   # 3.17 Verify that daemon.json file ownership is set to root:root
