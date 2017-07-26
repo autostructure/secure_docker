@@ -122,6 +122,6 @@ class secure_docker::install {
 
   # Make sure group docker exists
   group { 'docker':
-    gid => '998',
+    gid => '1100',
   }
 }
